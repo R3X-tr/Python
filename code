@@ -1,0 +1,25 @@
+urls = ("") #url here
+from datetime import datetime
+from bs4 import BeautifulSoup
+import requests
+
+r = (requests.get(urls))
+
+soup = BeautifulSoup(r.content,"html.parser")
+
+urunler = soup.find_all("", {""})  #enter html tag and its information to left like ("span", {"class":"prdct-desc-cntnr-name hasRatings"})
+fiyatlar = soup.find_all("", {"":""})
+now = datetime.now()
+
+current_time = now.strftime("%H:%M:%S")
+print("Current Time =", current_time)
+
+print( "_________________________________")
+
+for i in range(len(urunler)):
+
+    print(urunler[i].text)
+    print(fiyatlar[i].text)
+    vr = urunler[i].text, fiyatlar[i].text
+    print( "____________________________________" )
+
